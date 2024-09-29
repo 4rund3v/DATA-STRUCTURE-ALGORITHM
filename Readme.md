@@ -27,12 +27,12 @@ Materials for the DS and Algo preperations
     - 23 Hard
     - 81 Med
     - 73 Easy
-  3. Strivers A2Z Sheet Playlist 
+  3. [Strivers A2Z Sheet Playlist](https://takeuforward.org/strivers-a2z-dsa-course/strivers-a2z-dsa-course-sheet-2/)
     - 455 Problems Covers the breadth and Depth of each pattern and related problem
     - 16 Patterns
-  4. 30 Problems by ZTM-ZeroToMastery
-  5. 200 Problems from AlgoExpert ( Leet150 + Neetcode 150)
-  6. Interview Cake
+  4. [30 Problems by ZTM-ZeroToMastery](https://zerotomastery.io/courses/faang-interview-prep/)
+  5. [200 Problems from AlgoExpert](https://www.algoexpert.io/questions) ( Leet150 + Neetcode 150)
+  6. [Interview Cake](https://www.interviewcake.com/table-of-contents)
     - 12 Patterns
     - 50 Problems
 
@@ -52,6 +52,15 @@ Materials for the DS and Algo preperations
   4. Expression Parsing
   5. Manachers Algo
   6. Finding Repetitions.
+  7. Kandanes Algorithm
+  8. Stable Internships
+  9. Union Find
+  10. Dijkstra's algorithm
+  11. Topological Sort
+  12. Kruskals Algorithm
+  13. A* algo
+  14. KMP algorithm
+  15. Prims algorithm
 
 
 #### Patterns in Depth
