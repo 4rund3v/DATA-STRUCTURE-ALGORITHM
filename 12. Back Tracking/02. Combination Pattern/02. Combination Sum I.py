@@ -1,18 +1,8 @@
 """
-
 Problem Statement:
     Given an array of distinct positive integers (candidates) and a target integer,
     find all unique combinations of candidates where the chosen numbers sum to the target.
     Each number in candidates may be used an unlimited number of times.
-
-Approach:
-    We use a backtracking algorithm to explore all possible combinations.
-    1. Sort the candidates array (optional, but can help with pruning).
-    2. Use a recursive function to build combinations:
-        a. If the current sum equals the target, add the current combination to the result.
-        b. If the current sum exceeds the target, return (backtrack).
-    c. For each candidate, add it to the current combination and recursively call the function.
-        3. Start the recursion with an empty combination and a sum of 0.
 
 Time Complexity: O(N^(T/M)), where N is the number of candidates,
     T is the target value, and M is the minimum value among the candidates.
@@ -25,89 +15,95 @@ Space Complexity: O(T/M)
     - The maximum depth of recursion is T/M.
     - Each recursive call stores a constant amount of data.
 
-Example walkthrough (candidates [2,3,6,7], target 7):
-    1. Start with empty combination: []
-    2. Choose 2: [2], remaining target: 5
-    3. Choose 2 again: [2,2], remaining target: 3
-    4. Choose 3: [2,2,3], remaining target: 0 (Solution found)
-    5. Backtrack to [2,2], choose 6 (exceeds target, backtrack)
-    6. Backtrack to [2], choose 3: [2,3], remaining target: 2
-    7. Continue this process...
-    8. Eventually, we'll also find the solution [7]
-    Final output: [[2,2,3], [7]]
+Example:
+    Input: candidates = [2,3,6,7], target = 7
+    Output: [[2,2,3],[7]]
+    Explanation:
+    2 and 3 are candidates, and 2 + 2 + 3 = 7. Note that 2 can be used multiple times.
+    7 is a candidate, and 7 = 7.
+    These are the only two combinations.
 
-Optimization or Variations:
-    1. Early termination: Break the loop when a candidate exceeds the remaining target.
-    2. Memoization: Could be used for problems with repeated subproblems.
-    3. Iterative approach: Could be implemented to avoid recursion overhead.
+Visual Representation of the Decision Tree:
+For candidates [2,3,6,7] and target 7, the decision tree would look like this:
 
-Key Points:
-    1. Backtracking is crucial: It allows efficient exploration of all possibilities.
-    2. Sorting can optimize: Allows for early termination in some cases.
-    3. Avoiding duplicates: Achieved by our choice of starting index in recursive calls.
-    4. Unbounded knapsack nature: Each number can be used multiple times.
+                       []
+              /     /     \     \
+            [2]    [3]    [6]   [7]
+           /  \     |
+        [2,2] [2,3] [3,3]
+        /     |
+    [2,2,2] [2,3,2]
+      |       |
+  [2,2,2,2] [2,3,2]  (stop here as sum > 7)
+
+    Valid combinations: [2,2,3] and [7]
 """
 
-def combinationSum(candidates, target):
-    def backtrack(start, target, path):
+
+class Solution1:
+    def __init__(self):
+        self.result = []  # list to store all valid combinations
+
+    def solve(self, start: int, candidates: list[int], target: int, temp: list[int]) -> None:
+        # Base case: if we have reached the target sum
         if target == 0:
-            result.append(path[:])
+            self.result.append(temp[:])  # Add a copy of the current combination
             return
+        
+        # If target becomes negative, we've exceeded the sum, so return
+        if target < 0:
+            return
+        
+        # Try all possible numbers from start to end of candidates
         for i in range(start, len(candidates)):
-            if candidates[i] > target:
-                break
-            path.append(candidates[i])
-            backtrack(i, target - candidates[i], path)
-            path.pop()
+            temp.append(candidates[i])  # Add current number to the combination
+            # Recurse with same start index (to allow reuse) and reduced target
+            self.solve(i, candidates, target - candidates[i], temp)
+            temp.pop()  # Backtrack: remove the last added number
 
-    candidates.sort()  # Optional, but can help with pruning
-    result = []
-    backtrack(0, target, [])
-    return result
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+        temp = []  # Temporary list to build combinations
+        self.result = []  # Reset result list
+        candidates.sort()  # Sort candidates for optimization
+        self.solve(0, candidates, target, temp)  # Start solving from index 0
+        return self.result
 
-# Example usage
-print(combinationSum([2,3,6,7], 7))
-
-
-def backtrack(candidates, target, start, path, result):
-    if target == 0:
-        result.append(path[:])
-        return
-    for i in range(start, len(candidates)):
-        if candidates[i] > target:
-            break  # Optimization: early termination if candidates are sorted
-        path.append(candidates[i])
-        backtrack(candidates, target - candidates[i], i, path, result)
-        path.pop()  # Backtrack by removing the last added candidate
-
-def combination_sum(candidates, target):
-    candidates.sort()  # Optional, but can help with pruning
-    result = []
-    backtrack(candidates, target, 0, [], result)
-    return result
 # Example usage:
-print(combination_sum([2,3,6,7], 7))
+solution = Solution1()
+candidates = [2, 3, 6, 7]
+target = 7
+result = solution.combinationSum(candidates, target)
+print(result)  # Output: [[2, 2, 3], [7]]
 
 
-
-class Solution:
+class Solution2:
     def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
         """
-        Time Complexity: O(n^target/min(candidates)). In the worst case, the state-space tree has n branches and the depth of the tree is at most target divided by the smallest number in candidates.
+        Time Complexity: O(n^(target/min(candidates))). In the worst case, the state-space tree 
+        has n branches and the depth of the tree is at most target divided by the smallest number in candidates.
         """
-        results : list[list[int]] = []
+        results: list[list[int]] = []
         n = len(candidates)
-        def dfs(starting_index, curr_sum: int, target: int, path: list):
+        
+        def dfs(starting_index: int, curr_sum: int, target: int, path: list):
             if curr_sum == target:
-                results.append(path[::])
+                results.append(path[:])  # Add a copy of the current path
                 return
             for index in range(starting_index, n):
                 num = candidates[index]
                 new_sum = curr_sum + num
                 if new_sum > target:
                     continue
-                dfs(index, new_sum, target, path+[num])
+                dfs(index, new_sum, target, path + [num])
             return
-        candidates.sort()
+        
+        candidates.sort()  # Sort candidates for optimization
         dfs(starting_index=0, curr_sum=0, target=target, path=[])
         return results
+
+# Example usage for Solution2:
+solution2 = Solution2()
+candidates = [2, 3, 6, 7]
+target = 7
+result2 = solution2.combinationSum(candidates, target)
+print(result2)  # Output: [[2, 2, 3], [7]]
