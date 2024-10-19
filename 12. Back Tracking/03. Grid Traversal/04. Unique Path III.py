@@ -51,14 +51,13 @@ class Solution:
             return
         
         # Mark current cell as visited
-        # original_value = grid[i][j]
         grid[i][j] = -1
         
         # Explore all four directions
         for dx, dy in self.directions:
             self.dfs(grid, curr_count + 1, i + dx, j + dy)
         
-        # Backtrack: restore the original value
+        # Backtrack: restore the value to 0 
         grid[i][j] = 0
 
     def uniquePathsIII(self, grid: list[list[int]]) -> int:

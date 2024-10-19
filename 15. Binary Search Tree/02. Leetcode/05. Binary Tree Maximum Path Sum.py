@@ -67,8 +67,9 @@ class Solution:
             # Update the global maximum sum
             self.max_sum = max(self.max_sum, path_sum_through_node, path_sum_with_one_child, path_sum_only_node)
             
-            # Return the maximum sum of a path that can be extended to the parent
+            # Return the maximum sum of a path that can be extended to the parent (Basically can go up in the binary tree)
             # This is either the path with one child or just the current node
+            # path_sum_through_node is not considered (because the path is completed already )
             return max(path_sum_with_one_child, path_sum_only_node)
         
         # Start the depth-first search from the root

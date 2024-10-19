@@ -20,16 +20,10 @@ Recursion Tree for Backtracking (simplified for num = 324 and k = 2):
             234  243 314 324
 
 Note: The actual recursion tree would be much larger for the given example (7654321, k=4).
-This simplified tree shows the basic structure of the recursion.
 
 
-Here's a brief overview of the two approaches:
-
-Backtracking Solution:
-
-    Time Complexity: O(n^k) in the worst case
-    Space Complexity: O(n)
-    Approach: Recursively tries all possible swaps, starting from the leftmost position and finding the minimum digit from that position to the end.
+Time Complexity: O(n! / (n-k)!), where n is the length of the string and k is the number of swaps.
+Space Complexity: O(n) for the recursion stack and to store the current and maximum number.
 
 """
 
@@ -54,13 +48,9 @@ class BackTrackingSolution:
                     if num[i] == min_digit:
                         # Swap the current digit with the min digit
                         swap(num, index, i)
-                        # Update the min number if the current number is smaller
                         self.min_num = min(self.min_num, ''.join(num))
-                        # Recursively call backtrack with one less swap and next index
                         backtrack(num, k - 1, index + 1)
-                        # Undo the swap (backtrack)
                         swap(num, index, i)
-                        # Break after first swap with minimum digit
                         break
             
             # Move to the next index without making a swap

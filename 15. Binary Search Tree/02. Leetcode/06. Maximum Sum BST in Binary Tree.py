@@ -7,12 +7,12 @@ Space Complexity: O(h), where h is the height of the tree (due to the recursive 
 
 Detailed Explanation:
 We use a bottom-up approach to solve this problem efficiently:
-1. We perform a depth-first search (DFS) on the tree, starting from the leaf nodes and moving up to the root.
-2. For each node, we determine if its subtree is a valid BST and calculate its sum.
-3. We propagate information upwards: for each subtree, we return the minimum value, maximum value, and sum.
-4. At each node, we check if it forms a valid BST with its left and right subtrees.
-5. If a subtree is a valid BST, we update the global maximum sum if necessary.
-6. This approach allows us to check BST validity and calculate sums in a single pass through the tree.
+    1. We perform a depth-first search (DFS) on the tree, starting from the leaf nodes and moving up to the root.
+    2. For each node, we determine if its subtree is a valid BST and calculate its sum.
+    3. We propagate information upwards: for each subtree, we return the minimum value, maximum value, and sum.
+    4. At each node, we check if it forms a valid BST with its left and right subtrees.
+    5. If a subtree is a valid BST, we update the global maximum sum if necessary.
+    6. This approach allows us to check BST validity and calculate sums in a single pass through the tree.
 
 Key Idea: By returning min and max values from subtrees, we can efficiently check BST validity at each node.
 

@@ -134,7 +134,9 @@ def backtrack(s, start, permutations):
 
     used = set()
     for i in range(start, len(s)):
+        # so that we don't use a multiple times in case of aab
         if s[i] not in used:
+            # store the char in the set 
             used.add(s[i])
             swap(s, start, i)  # swap
             backtrack(s, start + 1, permutations)  # recurse

@@ -85,30 +85,6 @@ class BackTrackingSolution:
         backtrack(num_list, k, 0)
         return self.max_num
 
-class BackTrackingSolution:
-    def findMaximumNum(self, str, k):
-        def backtrack(num, k, index):
-            if k == 0 or index == len(num):
-                return
-            
-            max_digit = max(num[index:])
-            if num[index] != max_digit:
-                for i in range(index + 1, len(num)):
-                    if num[i] == max_digit:
-                        num[index], num[i] = num[i], num[index]
-                        self.max_num = max(self.max_num, ''.join(num))
-                        backtrack(num, k - 1, index + 1)
-                        num[index], num[i] = num[i], num[index]  # backtrack
-            
-            backtrack(num, k, index + 1)
-
-        # Convert input string to list for easy manipulation
-        num_list = list(str)
-        self.max_num = str
-        
-        backtrack(num_list, k, 0)
-        return self.max_num
-
 # Test the solution
 sol = BackTrackingSolution()
 print(" ====== Back Tracking ======")

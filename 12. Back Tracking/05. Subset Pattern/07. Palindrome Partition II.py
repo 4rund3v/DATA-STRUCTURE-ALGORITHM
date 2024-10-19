@@ -46,12 +46,12 @@
         - Level 3 (Leaves): Final permutations
 
     Key Points:
-    1. Each level in the tree represents fixing a character at a specific position.
-    2. Branches represent different choices for each position.
-    3. The number of branches decreases by 1 at each level.
-    4. Leaf nodes (bottom level) represent complete permutations.
-    5. The depth of the tree is equal to the length of the string.
-    6. Total number of leaf nodes = n! (all possible permutations)
+        1. Each level in the tree represents fixing a character at a specific position.
+        2. Branches represent different choices for each position.
+        3. The number of branches decreases by 1 at each level.
+        4. Leaf nodes (bottom level) represent complete permutations.
+        5. The depth of the tree is equal to the length of the string.
+        6. Total number of leaf nodes = n! (all possible permutations)
 
     Backtracking Process:
     - Moving down the tree: Making a choice (swapping characters)

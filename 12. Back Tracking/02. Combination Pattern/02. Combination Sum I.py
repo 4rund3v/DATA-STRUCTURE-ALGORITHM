@@ -9,10 +9,10 @@ Approach:
     We use a backtracking algorithm to explore all possible combinations.
     1. Sort the candidates array (optional, but can help with pruning).
     2. Use a recursive function to build combinations:
-    a. If the current sum equals the target, add the current combination to the result.
-    b. If the current sum exceeds the target, return (backtrack).
+        a. If the current sum equals the target, add the current combination to the result.
+        b. If the current sum exceeds the target, return (backtrack).
     c. For each candidate, add it to the current combination and recursively call the function.
-    3. Start the recursion with an empty combination and a sum of 0.
+        3. Start the recursion with an empty combination and a sum of 0.
 
 Time Complexity: O(N^(T/M)), where N is the number of candidates,
     T is the target value, and M is the minimum value among the candidates.
@@ -87,3 +87,27 @@ def combination_sum(candidates, target):
     return result
 # Example usage:
 print(combination_sum([2,3,6,7], 7))
+
+
+
+class Solution:
+    def combinationSum(self, candidates: list[int], target: int) -> list[list[int]]:
+        """
+        Time Complexity: O(n^target/min(candidates)). In the worst case, the state-space tree has n branches and the depth of the tree is at most target divided by the smallest number in candidates.
+        """
+        results : list[list[int]] = []
+        n = len(candidates)
+        def dfs(starting_index, curr_sum: int, target: int, path: list):
+            if curr_sum == target:
+                results.append(path[::])
+                return
+            for index in range(starting_index, n):
+                num = candidates[index]
+                new_sum = curr_sum + num
+                if new_sum > target:
+                    continue
+                dfs(index, new_sum, target, path+[num])
+            return
+        candidates.sort()
+        dfs(starting_index=0, curr_sum=0, target=target, path=[])
+        return results

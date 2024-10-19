@@ -1,17 +1,18 @@
-# The main function sort_stack:
-# Base case: If the stack is empty or has only one element, it's already sorted, so we return it.
-# Recursive case:
-#     We remove the top element.
-#     We recursively sort the remaining stack.
-#     We insert the removed element back into its correct position using the insert_sorted function.
+"""
+The main function sort_stack:
+Base case: If the stack is empty or has only one element, it's already sorted, so we return it.
+Recursive case:
+    We remove the top element.
+    We recursively sort the remaining stack.
+    We insert the removed element back into its correct position using the insert_sorted function.
 
-# The insert_sorted function:
-#     Base case: If the stack is empty or the top element is smaller than the current element, we insert the element at the top.
-#     Recursive case:
-#         We remove the top element.
-#         We recursively insert the current element.
-#         We put back the removed top element.
-
+The insert_sorted function:
+    Base case: If the stack is empty or the top element is smaller than the current element, we insert the element at the top.
+    Recursive case:
+        We remove the top element.
+        We recursively insert the current element.
+        We put back the removed top element.
+"""
 
 def sort_stack(stack):
     # Base case: if the stack is empty or has only one element, it's already sorted

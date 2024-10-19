@@ -1,30 +1,30 @@
 """
 Problem Statement:
 Implement a Trie (Prefix Tree) data structure that supports the following operations:
-1. Initialize the Trie object.
-2. Insert a word into the Trie.
-3. Count the number of instances of a word in the Trie.
-4. Count the number of words in the Trie that have a given prefix.
-5. Erase a word from the Trie.
+    1. Initialize the Trie object.
+    2. Insert a word into the Trie.
+    3. Count the number of instances of a word in the Trie.
+    4. Count the number of words in the Trie that have a given prefix.
+    5. Erase a word from the Trie.
 
 Space Complexity:
-- O(N * M), where N is the total number of characters in all inserted words, and M is the size of the character set (26 in this case).
-- In the worst case, when there are no common prefixes, each character of each word requires a new TrieNode.
+    - O(N * M), where N is the total number of characters in all inserted words, and M is the size of the character set (26 in this case).
+    - In the worst case, when there are no common prefixes, each character of each word requires a new TrieNode.
 
 Time Complexity:
-- Insert: O(L), where L is the length of the word being inserted.
-- CountWordsEqualTo: O(L), where L is the length of the word being counted.
-- CountWordsStartingWith: O(L), where L is the length of the prefix.
-- Erase: O(L), where L is the length of the word being erased.
+    - Insert: O(L), where L is the length of the word being inserted.
+    - CountWordsEqualTo: O(L), where L is the length of the word being counted.
+    - CountWordsStartingWith: O(L), where L is the length of the prefix.
+    - Erase: O(L), where L is the length of the word being erased.
 
 Explanation:
-1. The Trie is implemented using a tree-like structure where each node represents a character.
-2. Each TrieNode contains a dictionary 'children' to store its child nodes, a 'word_count' to track complete words, and a 'prefix_count' to track prefixes.
-3. The Trie class has a root node initialized in the constructor.
-4. The insert method adds a word to the Trie, incrementing prefix counts along the way and the word count at the end.
-5. The countWordsEqualTo method traverses the Trie to find the node corresponding to the word and returns its word count.
-6. The countWordsStartingWith method traverses the Trie to find the node corresponding to the prefix and returns its prefix count.
-7. The erase method removes a word from the Trie, decrementing counts and potentially removing unused nodes.
+    1. The Trie is implemented using a tree-like structure where each node represents a character.
+    2. Each TrieNode contains a dictionary 'children' to store its child nodes, a 'word_count' to track complete words, and a 'prefix_count' to track prefixes.
+    3. The Trie class has a root node initialized in the constructor.
+    4. The insert method adds a word to the Trie, incrementing prefix counts along the way and the word count at the end.
+    5. The countWordsEqualTo method traverses the Trie to find the node corresponding to the word and returns its word count.
+    6. The countWordsStartingWith method traverses the Trie to find the node corresponding to the prefix and returns its prefix count.
+    7. The erase method removes a word from the Trie, decrementing counts and potentially removing unused nodes.
 
 Examples:
 1. Inserting "apple" twice:

@@ -2,19 +2,19 @@
 Binary Search Tree (BST) Deletion Implementation
 
 Problem Statement:
-Implement a function to delete a given element from a Binary Search Tree.
+    Implement a function to delete a given element from a Binary Search Tree.
 
 Time Complexity: O(h), where h is the height of the tree.
-- In a balanced BST, h = log(n), where n is the number of nodes.
-- In the worst case (skewed tree), h = n.
+    - In a balanced BST, h = log(n), where n is the number of nodes.
+    - In the worst case (skewed tree), h = n.
 
 Space Complexity: O(h) due to the recursive call stack.
 
 Explanation:
-The deletion algorithm needs to handle three main cases:
-1. Node to be deleted is a leaf (has no children).
-2. Node to be deleted has only one child.
-3. Node to be deleted has two children.
+    The deletion algorithm needs to handle three main cases:
+        1. Node to be deleted is a leaf (has no children).
+        2. Node to be deleted has only one child.
+        3. Node to be deleted has two children.
 
 For case 3, we find the inorder successor (smallest value in the right subtree)
 to replace the node we're deleting.

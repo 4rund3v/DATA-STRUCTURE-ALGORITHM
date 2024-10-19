@@ -10,7 +10,7 @@ Time Complexity:
     - hasNext(): O(1)
 
 Space Complexity:
-- O(h), where h is the height of the tree
+    - O(h), where h is the height of the tree
 
 Explanation:
     1. The iterator maintains a stack of nodes. When initialized, it pushes all leftmost nodes onto the stack.

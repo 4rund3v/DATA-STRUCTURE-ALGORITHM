@@ -47,6 +47,31 @@ Time Complexity:
 Space Complexity: 
     O(n), where n is the number of candidates.
     This accounts for the recursion stack and the space to store combinations.
+
+Key Points:
+    1. Sorting is crucial for handling duplicates and enabling pruning.
+    2. Skipping duplicates at the same level prevents duplicate combinations.
+    3. Using 'i + 1' in the recursive call ensures each number is used only once.
+    4. Backtracking allows efficient exploration of all possibilities.
+
+Visualization of the backtracking process for [9,2,2,4,6,1,5], target = 8:
+
+               []
+        /      /       \     \   \
+      [1]     [2]     [4]   [5] [6]
+     /  \      |       |
+  [1,2][1,5]  [2,2]   [2,4]
+    |    |     |
+[1,2,5] [1,6] [2,2,4]
+
+This tree shows how:
+    1. Duplicates (like 2) are handled at each level.
+    2. Paths are pruned when they exceed the target.
+    3. Valid combinations are found at different depths.
+
+Optimization:
+    1. Early termination when a candidate exceeds the target.
+    2. Skipping duplicates reduces unnecessary exploration.
 """
 
 
@@ -80,27 +105,3 @@ print(solution.combinationSum2([9,2,2,4,6,1,5], 8))
 # print(solution.combinationSum2([1,2,3,4,5], 7))
 
 
-# Key Points:
-# 1. Sorting is crucial for handling duplicates and enabling pruning.
-# 2. Skipping duplicates at the same level prevents duplicate combinations.
-# 3. Using 'i + 1' in the recursive call ensures each number is used only once.
-# 4. Backtracking allows efficient exploration of all possibilities.
-
-# Visualization of the backtracking process for [9,2,2,4,6,1,5], target = 8:
-#
-#                []
-#         /      /       \     \   \
-#       [1]     [2]     [4]   [5] [6]
-#      /  \      |       |
-#   [1,2][1,5]  [2,2]   [2,4]
-#     |    |     |
-# [1,2,5] [1,6] [2,2,4]
-#
-# This tree shows how:
-# 1. Duplicates (like 2) are handled at each level.
-# 2. Paths are pruned when they exceed the target.
-# 3. Valid combinations are found at different depths.
-
-# Optimization:
-# 1. Early termination when a candidate exceeds the target.
-# 2. Skipping duplicates reduces unnecessary exploration.

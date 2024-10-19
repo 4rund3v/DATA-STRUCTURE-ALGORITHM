@@ -1,17 +1,17 @@
 """
 Problem Statement:
-Given an m x n board of characters and a list of strings words, return all words on the board.
-Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells 
-are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
+    Given an m x n board of characters and a list of strings words, return all words on the board.
+    Each word must be constructed from letters of sequentially adjacent cells, where adjacent cells 
+    are horizontally or vertically neighboring. The same letter cell may not be used more than once in a word.
 
 Time Complexity: O(M * N * 4^L), where M and N are the dimensions of the board, and L is the maximum length of words.
 Space Complexity: O(K), where K is the total number of characters in all words.
 
 Approach:
-1. Build a Trie (prefix tree) from the given words for efficient prefix matching.
-2. Perform DFS on the board, simultaneously traversing the Trie.
-3. When a word is found, add it to the result set.
-4. Use a set to store results to automatically handle duplicates.
+    1. Build a Trie (prefix tree) from the given words for efficient prefix matching.
+    2. Perform DFS on the board, simultaneously traversing the Trie.
+    3. When a word is found, add it to the result set.
+    4. Use a set to store results to automatically handle duplicates.
 
 Examples:
 1. Input: board = [["o","a","a","n"],["e","t","a","e"],["i","h","k","r"],["i","f","l","v"]], words = ["oath","pea","eat","rain"]
@@ -33,12 +33,6 @@ class TrieNode:
     def insert(self, word):
         """
         Inserts a word into the Trie.
-        
-        Args:
-        word (str): The word to be inserted into the Trie.
-        
-        This method traverses the Trie, creating new nodes as necessary,
-        and marks the last node as the end of a word.
         """
         node = self
         for char in word:

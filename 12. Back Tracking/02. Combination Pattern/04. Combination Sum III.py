@@ -1,8 +1,8 @@
 """
 Problem Statement:
     Find all valid combinations of k numbers that sum up to n such that:
-    1. Only numbers 1 through 9 are used.
-    2. Each number is used at most once.
+        1. Only numbers 1 through 9 are used.
+        2. Each number is used at most once.
     Return a list of all possible valid combinations.
 
 

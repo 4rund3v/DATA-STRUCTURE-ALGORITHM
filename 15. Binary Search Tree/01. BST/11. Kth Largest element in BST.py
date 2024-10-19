@@ -59,55 +59,56 @@ class Solution:
         
         return None  # k is larger than the number of nodes
 
-    def kthLargest_DFS(self, root: TreeNode, k: int) -> int:
-        def reverse_inorder(node):
-            nonlocal k, result
-            if not node or result is not None:
-                return
-            
-            # Traverse right subtree
-            reverse_inorder(node.right)
-            
-            # Process current node
-            k -= 1
-            if k == 0:
-                result = node.val
-                return
-            
-            # Traverse left subtree
-            reverse_inorder(node.left)
-        
-        result = None
-        reverse_inorder(root)
-        return result
+    def kthLargest(self, root: TreeNode, k: int) -> int:
+        class KthLargestFinder:
+            def __init__(self):
+                self.k = k
+                self.result = None
+
+            def reverse_inorder(self, node):
+                if not node or self.result is not None:
+                    return
+
+                # Traverse right subtree
+                self.reverse_inorder(node.right)
+
+                # Process current node
+                self.k -= 1
+                if self.k == 0:
+                    self.result = node.val
+                    return
+
+                # Traverse left subtree
+                self.reverse_inorder(node.left)
+
+        finder = KthLargestFinder()
+        finder.reverse_inorder(root)
+        return finder.result
 
     def kthLargest_Morris(self, root: TreeNode, k: int) -> int:
-        def reverse_morris_traversal(root):
-            current = root
-            while current:
-                if not current.right:
-                    yield current.val
-                    current = current.left
+        current = root
+        while current:
+            if not current.right:
+                k -= 1
+                if k == 0:
+                    return current.val
+                current = current.left
+            else:
+                predecessor = current.right
+                while predecessor.left and predecessor.left != current:
+                    predecessor = predecessor.left
+                
+                if not predecessor.left:
+                    predecessor.left = current
+                    current = current.right
                 else:
-                    predecessor = current.right
-                    while predecessor.left and predecessor.left != current:
-                        predecessor = predecessor.left
-                    
-                    if not predecessor.left:
-                        predecessor.left = current
-                        current = current.right
-                    else:
-                        predecessor.left = None
-                        yield current.val
-                        current = current.left
-
-        for val in reverse_morris_traversal(root):
-            k -= 1
-            if k == 0:
-                return val
+                    predecessor.left = None
+                    k -= 1
+                    if k == 0:
+                        return current.val
+                    current = current.left
         
         return None  # k is larger than the number of nodes
-
 
 root = TreeNode(5)
 root.left = TreeNode(3)

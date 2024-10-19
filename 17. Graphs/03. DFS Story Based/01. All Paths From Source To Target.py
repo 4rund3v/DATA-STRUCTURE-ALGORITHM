@@ -1,12 +1,9 @@
 """
 797. All Paths From Source to Target
-Solved
-Medium
-Topics
-Companies
-Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
 
-The graph is given as follows: graph[i] is a list of all nodes you can visit from node i (i.e., there is a directed edge from node i to node graph[i][j]).
+    Given a directed acyclic graph (DAG) of n nodes labeled from 0 to n - 1, find all possible paths from node 0 to node n - 1 and return them in any order.
+
+    The graph is given as follows: graph[i] is a list of all nodes you can visit from node i (i.e., there is a directed edge from node i to node graph[i][j]).
 
  
 
@@ -41,7 +38,7 @@ class Solution:
             if starting_node == len_graph - 1:
                 results.append(path[::])
                 return
-\            for next_node in graph[starting_node]:
+            for next_node in graph[starting_node]:
                 backtrack(next_node, path+[next_node])
             return
         backtrack(0, [0])

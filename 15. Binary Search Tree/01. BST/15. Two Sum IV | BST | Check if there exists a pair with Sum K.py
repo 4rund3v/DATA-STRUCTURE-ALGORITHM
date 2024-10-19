@@ -14,11 +14,11 @@ Example:
 Input: root = [5,3,6,2,4,null,7], k = 9
 Output: true
 Explanation: 
-    5
-   / \
-  3   6
- / \   \
-2   4   7
+         5
+        / \
+       3   6
+      / \   \
+     2   4   7
 There exist two elements 3 and 6 such that 3 + 6 = 9
 """
 
