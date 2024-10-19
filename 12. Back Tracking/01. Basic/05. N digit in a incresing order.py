@@ -1,24 +1,26 @@
 """
 Problem Statement:
-Given an integer N, find all N-digit numbers with digits in strictly increasing order.
+    Given an integer N, find all N-digit numbers with digits in strictly increasing order.
 
 Time Complexity: O(9! / (9-N)!)
-- In the worst case (N=9), we have 9 choices for the first digit, 8 for the second, 7 for the third, and so on.
-- This gives us 9 * 8 * 7 * ... * (10-N) operations, which is 9! / (9-N)!
+    - In the worst case (N=9), we have 9 choices for the first digit, 8 for the second, 7 for the third, and so on.
+    - This gives us 9 * 8 * 7 * ... * (10-N) operations, which is 9! / (9-N)!
 
 Space Complexity: O(N)
-- The recursion stack can go up to depth N
-- We also store the result list, but its size is not dependent on the input size in a way that would change the complexity class
+    - The recursion stack can go up to depth N
+    - We also store the result list, but its size is not dependent on the input size in a way that would change the complexity class
 
 Explanation:
 The solution uses a backtracking approach to generate all valid numbers:
-1. We start with an empty number and gradually build it up.
-2. For each position, we try all possible digits that are greater than the last digit used.
-3. When we've placed N digits, we add the number to our result list.
-4. We then backtrack to try other possibilities.
+    1. We start with an empty number and gradually build it up.
+    2. For each position, we try all possible digits that are greater than the last digit used.
+    3. When we've placed N digits, we add the number to our result list.
+    4. We then backtrack to try other possibilities.
 
 Examples:
-N = 2: [12, 13, 14, 15, 16, 17, 18, 19, 23, 24, 25, 26, 27, 28, 29, 34, 35, 36, 37, 38, 39, 45, 46, 47, 48, 49, 56, 57, 58, 59, 67, 68, 69, 78, 79, 89]
+N = 2
+Output: [12, 13, 14, 15, 16, 17, 18, 19, 23, 24, 25, 26, 27, 28, 29, 34, 35, 36, 37, 38, 39, 45, 46, 47, 48, 49, 56, 57, 58, 59, 67, 68, 69, 78, 79, 89]
+
 """
 
 class BackTrackingSolution:
