@@ -1,8 +1,8 @@
 """
 Problem Statement: Combination Sum III
     Find all valid combinations of k numbers that sum up to n such that:
-    1. Only numbers 1 through 9 are used.
-    2. Each number is used at most once.
+        1. Only numbers 1 through 9 are used.
+        2. Each number is used at most once.
     Return a list of all possible valid combinations.
 
 Time Complexity: O(C(9,k)), where C(9,k) is the binomial coefficient.
@@ -46,12 +46,9 @@ This tree shows how:
     2. Branches are pruned when the sum exceeds 7 or when more than 3 numbers are selected.
     3. [1,2,4] is identified as the only valid solution.
 
-Key Points:
-    1. We only consider numbers from 1 to 9.
-    2. Each number is used at most once in a combination.
-    3. The backtracking function uses 'start' to ensure numbers are used in ascending order.
-    4. Early pruning is applied when the combination size exceeds k or the sum exceeds n.
-    5. The solution naturally avoids duplicate combinations due to the ascending order selection.
+Optimization:
+    1. Early termination when the combination size exceeds k or the sum exceeds n.
+    2. Starting from 'start' in each recursive call prevents duplicate considerations.
 """
 
 class Solution:
@@ -92,8 +89,3 @@ k, n = 3, 9
 result = solution.combinationSum3(k, n)
 print(f"\nk = {k}, n = {n}")
 print(f"Output: {result}")  # Output: [[1,2,6],[1,3,5],[2,3,4]]
-
-k, n = 4, 1
-result = solution.combinationSum3(k, n)
-print(f"\nk = {k}, n = {n}")
-print(f"Output: {result}")  # Output: []

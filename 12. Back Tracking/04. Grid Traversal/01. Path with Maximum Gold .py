@@ -3,14 +3,14 @@ Find the maximum amount of gold you can collect from the grid.
 
 Problem Statement:
     In a gold mine grid of size m x n, each cell in this mine has an integer representing
-    the amount of gold in that cell, 0 if it is empty. Return the maximum amount of gold
-    you can collect under the following conditions:
+    the amount of gold in that cell, 0 if it is empty. 
+    Return the maximum amount of gold you can collect ,
+    under the following conditions:
         - Every time you are located in a cell you will collect all the gold in that cell.
         - From your position, you can walk one step to the left, right, up, or down.
         - You can't visit the same cell more than once.
         - Never visit a cell with 0 gold.
         - You can start and stop collecting gold from any position in the grid that has some gold.
-
 
 Returns:
     int: The maximum amount of gold that can be collected.
@@ -22,7 +22,9 @@ Space Complexity: O(k), where k is the number of cells with gold.
     - This is due to the recursion stack in the worst case.
 
 Example:
-    Input: grid = [[0,6,0],[5,8,7],[0,9,0]]
+    Input: grid = [ [0,6,0],
+                    [5,8,7],
+                    [0,9,0]]
     Output: 24
     Explanation: Path to get the maximum gold, 9 -> 8 -> 7.
 """

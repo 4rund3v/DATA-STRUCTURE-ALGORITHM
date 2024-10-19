@@ -1,4 +1,4 @@
-template.py
+
 
 def combination_pattern(n, k):
     def backtrack(start, path):

@@ -29,7 +29,7 @@ class Solution:
     def __init__(self):
         self.result = []  # list to store all valid combinations
 
-    def solve(self, start: int, n: int, k: int, temp: list[int]) -> None:
+    def solve(self, start, n, k, temp) -> None:
         # Base case: if we have selected k elements
         if k == 0:
             self.result.append(temp[:])  # Add a copy of the current combination
