@@ -43,60 +43,71 @@ Note: The actual recursion tree for a 4x4 maze would be much larger.
 
 """
 
+class Solution:
+    def __init__(self):
+        self.n = 0  # Size of the maze (n x n)
+        self.paths = []  # List to store all valid paths
+        self.moves = [(0, 1), (1, 0)]  # Possible moves: right and down
 
-def is_safe(maze, x, y, n):
-    """Check if (x, y) is a valid and open position in the maze."""
-    return 0 <= x < n and 0 <= y < n and maze[x][y] == 1
+    def is_safe(self, maze, x, y) -> bool:
+        # Check if x and y are within bounds and the cell is open (1)
+        return 0 <= x < self.n and 0 <= y < self.n and maze[x][y] == 1
 
-def find_paths(maze):
-    n = len(maze)
-    # To keep track of visited cells
-    visited = [[False for _ in range(n)] for _ in range(n)]
-    #visited = [[False, False, False, False], [False, False, False, False], [False, False, False, False], [False, False, False, False]]
-    
-    paths = []
-    current_path = []
-    
-    def backtrack(x, y):
-        # If we've reached the destination , end of the matrix from the bottom right 
-        if x == n - 1 and y == n - 1:
-            paths.append(current_path[:])
+    def backtrack(self, maze, visited, current_path, x, y):
+        # If we've reached the destination (bottom-right corner)
+        if x == self.n - 1 and y == self.n - 1:
+            # Add a copy of the current path to the list of valid paths
+            self.paths.append(current_path[:])
             return
         
-        # Possible moves: right and down
-        moves = [(0, 1), (1, 0)]
-        
-        for dx, dy in moves:
+        # Explore possible moves (right and down)
+        for dx, dy in self.moves:
             next_x, next_y = x + dx, y + dy
-            if is_safe(maze, next_x, next_y, n) and not visited[next_x][next_y]:
+
+            # Check if the next position is safe and not visited
+            if self.is_safe(maze, next_x, next_y) and not visited[next_x][next_y]:
+                # Mark the next position as visited
                 visited[next_x][next_y] = True
+                # Add the next position to the current path
                 current_path.append((next_x, next_y))
                 
-                backtrack(next_x, next_y)
+                # Recursively explore from the next position
+                self.backtrack(maze, visited, current_path, next_x, next_y)
                 
-                # Backtrack
+                # Backtrack: unmark the position and remove it from the path
                 visited[next_x][next_y] = False
                 current_path.pop()
-    
-    # Start from (0, 0) if it's a valid position
-    if maze[0][0] == 1:
-        visited[0][0] = True
-        current_path.append((0, 0))
-        backtrack(0, 0)
-    
-    return paths
 
-# Example usage
+    def findPaths(self, maze):
+        # Get the size of the maze
+        self.n = len(maze)
+        # Reset the list of paths
+        self.paths = []
+        
+        # Start from (0, 0) if it's a valid position
+        if maze[0][0] == 1:
+            # Initialize visited array
+            visited = [[False for _ in range(self.n)] for _ in range(self.n)]
+            # Mark the starting position as visited
+            visited[0][0] = True
+            # Start backtracking from the top-left corner
+            self.backtrack(maze, visited, [(0, 0)], 0, 0)
+        
+        # Return all valid paths found
+        return self.paths
+
+
+
+
+# Example usage:
+solution = Solution()
 maze = [
     [1, 0, 0, 0],
     [1, 1, 0, 1],
     [0, 1, 0, 0],
     [1, 1, 1, 1]
 ]
-
-paths = find_paths(maze)
+paths = solution.findPaths(maze)
 print(f"Number of paths found: {len(paths)}")
 for i, path in enumerate(paths, 1):
     print(f"Path {i}: {path}")
-
-

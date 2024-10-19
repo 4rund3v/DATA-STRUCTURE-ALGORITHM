@@ -28,16 +28,6 @@ Examples:
 
 3. Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCB"
    Output: false
-
-
-Example:
-        Input: board = [["A","B","C","E"],["S","F","C","S"],["A","D","E","E"]], word = "ABCCED"
-        Output: true
-
-        Explanation: The word "ABCCED" can be found on the board:
-        A B C E
-        S F C S
-        A D E E
 """
 
 class Solution:
@@ -68,7 +58,7 @@ class Solution:
             if self.find(board, i_, j_, word, idx+1):
                 return True
         
-        # Backtrack: restore the $ with the original character
+        # Backtrack: restore the original character
         board[i][j] = temp
         return False
 
@@ -82,7 +72,6 @@ class Solution:
             return False
         
         # Check each cell in the board as a potential starting point
-        # If we found the starting string then search for left , right, top and bottom to check for the subsequent characters
         for i in range(self.m):
             for j in range(self.n):
                 if board[i][j] == word[0] and self.find(board, i, j, word, 0):
