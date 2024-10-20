@@ -3,8 +3,10 @@ Finding the k-th Largest Unique Number in a Large Stream
 Write a program that processes a stream of integers, which is too large to fit into memory all at once. The task is to find the k-th largest unique number in this stream. You can access the stream through the function getNum(), which retrieves the next number from the stream each time it's called. Additionally, you can use isNum(value) to check if a specific number exists in the data structure that you've used to store seen numbers.
 Details:
 Assume getNum() returns None when the stream has ended.
-The stream may contain duplicate numbers, but the task is to find the k-th largest unique number.
-It is guaranteed that there are at least k unique numbers in the stream.
+The stream may contain duplicate numbers, 
+but the task is to find the k-th largest unique number.
+It is guaranteed that there are at least k unique numbers
+in the stream.
 Example Function Signatures:
 python
 def getNum() -> int:

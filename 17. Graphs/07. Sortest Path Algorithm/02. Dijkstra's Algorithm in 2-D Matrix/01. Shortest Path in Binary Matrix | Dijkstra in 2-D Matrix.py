@@ -66,6 +66,26 @@ class Solution:
         # We add 1 to include the starting cell in the path length
         return result[m-1][n-1] + 1 if result[m-1][n-1] != float('inf') else -1
 
+
+
+class Solution:
+    def shortestPathBinaryMatrix(self, grid):
+        shortest_path = a_star_graph_search(
+            start              = (0, 0), 
+            goal_function      = get_goal_function(grid),
+            successor_function = get_successor_function(grid),
+            heuristic          = get_heuristic(grid)
+        )
+        if shortest_path is None or grid[0][0] == 1:
+            return -1
+        else:
+            return len(shortest_path)
+
+
+
+
+
+
 # Example usage
 if __name__ == "__main__":
     solution = Solution()

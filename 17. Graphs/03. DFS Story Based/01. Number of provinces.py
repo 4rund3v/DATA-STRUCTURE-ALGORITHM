@@ -51,6 +51,30 @@ def findCircleNum(isConnected: List[List[int]]) -> int:
     
     return provinces
 
+    def findCircleNum2(self, isConnected: List[List[int]]) -> int:
+        """
+        """
+        visited = [0]*(len(isConnected))
+        adj_list = [[] for i in range(len(isConnected))]
+        for i in range(len(isConnected)):
+            for j in range(len(isConnected[0])):
+                if i!=j and isConnected[i][j]==1:
+                    adj_list[i].append(j)
+                    adj_list[j].append(i)
+        def dfs(starting_node: int):
+            if visited[starting_node] == 1:
+                return
+            visited[starting_node] = 1
+            for next_node in adj_list[starting_node]:
+                dfs(starting_node=next_node)
+            return
+        province_count = 0
+        for index in range(len(isConnected)):
+            if visited[index] ==1:
+                continue
+            dfs(index)
+            province_count += 1
+        return province_count
 """
 **Detailed Explanation:**
 

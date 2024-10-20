@@ -72,6 +72,38 @@ class Solution:
         # 4. Collect and return safe nodes
         return [i for i in range(V) if safe[i]]
 
+    def eventualSafeNodesBFS(self, graph: List[List[int]]) -> List[int]:
+       
+        # Solved via reversing the edges and finding indegree and using topological sort
+        from collections import deque
+
+        num_nodes = len(graph)
+        adj_list_rev = [[] for _ in range(num_nodes)]
+        for node_index, node in enumerate(graph):
+            for neighbor in node:
+                adj_list_rev[neighbor].append(node_index)
+        
+        indegree_counter = [0 for _ in range(num_nodes)]
+        for source in range(num_nodes):
+            for neighbor in adj_list_rev[source]:
+                indegree_counter[neighbor] += 1
+        queue = deque([])
+        for i in range(num_nodes):
+            if indegree_counter[i] == 0:
+                queue.append(i)
+        
+        safe_states = []
+        while queue:
+            safe_node = queue.popleft()
+            safe_states.append(safe_node)
+            for neighbor in adj_list_rev[safe_node]:
+                indegree_counter[neighbor] -= 1
+                if indegree_counter[neighbor] == 0:
+                    queue.append(neighbor)
+        safe_states.sort()
+        return safe_states
+
+
 # Test the solution
 solution = Solution()
 

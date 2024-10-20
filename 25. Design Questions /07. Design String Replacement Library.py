@@ -38,5 +38,4 @@ Constraints:
 Placeholders in the input string are always wrapped in percentage signs (%).
 If a placeholder in the input string does not have a corresponding entry in the replacement map, it should remain unchanged in the output.
 The function should handle nested or recursive placeholders as seen in the second example.
-
 """
